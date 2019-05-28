@@ -1,0 +1,43 @@
+[
+    {
+        "id": "8babcf2d.e767",
+        "type": "tab",
+        "label": "HelloWord",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7a401fb0.c5d1a",
+        "type": "inject",
+        "z": "8babcf2d.e767",
+        "name": "",
+        "topic": "",
+        "payload": "Hello World",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "f4a34f75.1029"
+            ]
+        ]
+    },
+    {
+        "id": "f4a34f75.1029",
+        "type": "debug",
+        "z": "8babcf2d.e767",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 340,
+        "y": 80,
+        "wires": []
+    }
+]

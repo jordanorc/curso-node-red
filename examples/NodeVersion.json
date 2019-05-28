@@ -1,0 +1,78 @@
+[
+    {
+        "id": "e283c107.3a2c7",
+        "type": "tab",
+        "label": "Node Version",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "520a3a89.dd8d64",
+        "type": "inject",
+        "z": "e283c107.3a2c7",
+        "name": "make request",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "20f2fb92.7322f4"
+            ]
+        ]
+    },
+    {
+        "id": "20f2fb92.7322f4",
+        "type": "http request",
+        "z": "e283c107.3a2c7",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "https://nodered.org/",
+        "tls": "",
+        "x": 330,
+        "y": 100,
+        "wires": [
+            [
+                "6867bd7c.69ba74"
+            ]
+        ]
+    },
+    {
+        "id": "f57c3d0f.140e8",
+        "type": "debug",
+        "z": "e283c107.3a2c7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 790,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "6867bd7c.69ba74",
+        "type": "html",
+        "z": "e283c107.3a2c7",
+        "name": "",
+        "property": "",
+        "outproperty": "",
+        "tag": ".node-red-latest-version",
+        "ret": "text",
+        "as": "single",
+        "x": 570,
+        "y": 100,
+        "wires": [
+            [
+                "f57c3d0f.140e8"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,59 @@
+[
+    {
+        "id": "f2004aed.778718",
+        "type": "tab",
+        "label": "StringUpperCase",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "56a2a8b6.c10398",
+        "type": "inject",
+        "z": "f2004aed.778718",
+        "name": "",
+        "topic": "",
+        "payload": "testando nós de função",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 60,
+        "wires": [
+            [
+                "e966bab0.e51d08"
+            ]
+        ]
+    },
+    {
+        "id": "e966bab0.e51d08",
+        "type": "function",
+        "z": "f2004aed.778718",
+        "name": "toUpperCase",
+        "func": "msg.payload = msg.payload.toUpperCase();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 60,
+        "wires": [
+            [
+                "ad465fb8.6025"
+            ]
+        ]
+    },
+    {
+        "id": "ad465fb8.6025",
+        "type": "debug",
+        "z": "f2004aed.778718",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 600,
+        "y": 60,
+        "wires": []
+    }
+]

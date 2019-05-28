@@ -1,0 +1,172 @@
+[
+    {
+        "id": "8e3a07f0.3b1308",
+        "type": "tab",
+        "label": "Switch Example",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4e46684a.412f38",
+        "type": "switch",
+        "z": "8e3a07f0.3b1308",
+        "name": "",
+        "property": "payload.success",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 120,
+        "wires": [
+            [
+                "3346691e.63feb6"
+            ],
+            [
+                "58350532.19adac"
+            ]
+        ]
+    },
+    {
+        "id": "f3cbfd3b.6bbfa",
+        "type": "json",
+        "z": "8e3a07f0.3b1308",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "4e46684a.412f38"
+            ]
+        ]
+    },
+    {
+        "id": "3346691e.63feb6",
+        "type": "debug",
+        "z": "8e3a07f0.3b1308",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "complete": "false",
+        "x": 790,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "58350532.19adac",
+        "type": "debug",
+        "z": "8e3a07f0.3b1308",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 790,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3ec994cc.1e3cdc",
+        "type": "websocket in",
+        "z": "8e3a07f0.3b1308",
+        "name": "",
+        "server": "",
+        "client": "e9c31811.ff9f98",
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "f3cbfd3b.6bbfa"
+            ]
+        ]
+    },
+    {
+        "id": "38d33353.5b7b8c",
+        "type": "websocket out",
+        "z": "8e3a07f0.3b1308",
+        "name": "",
+        "server": "",
+        "client": "e9c31811.ff9f98",
+        "x": 670,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "bb6495c8.1b5d38",
+        "type": "inject",
+        "z": "8e3a07f0.3b1308",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "d6161e0d.ef8c2"
+            ]
+        ]
+    },
+    {
+        "id": "66a979b4.4030b8",
+        "type": "inject",
+        "z": "8e3a07f0.3b1308",
+        "name": "",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "d6161e0d.ef8c2"
+            ]
+        ]
+    },
+    {
+        "id": "d6161e0d.ef8c2",
+        "type": "template",
+        "z": "8e3a07f0.3b1308",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"success\": {{payload}}\n}",
+        "output": "str",
+        "x": 380,
+        "y": 300,
+        "wires": [
+            [
+                "38d33353.5b7b8c"
+            ]
+        ]
+    },
+    {
+        "id": "e9c31811.ff9f98",
+        "type": "websocket-client",
+        "z": "",
+        "path": "wss://echo.websocket.org/",
+        "tls": "",
+        "wholemsg": "false"
+    }
+]

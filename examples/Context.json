@@ -1,0 +1,330 @@
+[
+    {
+        "id": "af4a79a0.30af88",
+        "type": "tab",
+        "label": "Context",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cb128070.6a3ea",
+        "type": "inject",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 40,
+        "wires": [
+            [
+                "604b072.408d1f8"
+            ]
+        ]
+    },
+    {
+        "id": "604b072.408d1f8",
+        "type": "function",
+        "z": "af4a79a0.30af88",
+        "name": "Local counter",
+        "func": "var count = context.get('count') || 0;\ncount += 1;\ncontext.set('count',count);\nmsg.payload = count;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 40,
+        "wires": [
+            [
+                "fc41af9c.8ab46"
+            ]
+        ]
+    },
+    {
+        "id": "fc41af9c.8ab46",
+        "type": "debug",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 510,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "32f80401.a9f8ac",
+        "type": "inject",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "e75a1a50.6356c8",
+                "d45f95b8.c86ba8"
+            ]
+        ]
+    },
+    {
+        "id": "e75a1a50.6356c8",
+        "type": "function",
+        "z": "af4a79a0.30af88",
+        "name": "Local counter",
+        "func": "var count = context.get('count') || 0;\ncount += 1;\ncontext.set('count',count);\nmsg.payload = count;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "be4b213b.ee46b"
+            ]
+        ]
+    },
+    {
+        "id": "d45f95b8.c86ba8",
+        "type": "function",
+        "z": "af4a79a0.30af88",
+        "name": "Local counter",
+        "func": "var count = context.get('count') || 0;\ncount += 1;\ncontext.set('count',count);\nmsg.payload = count;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 200,
+        "wires": [
+            [
+                "a74ce89e.ed3ca8"
+            ]
+        ]
+    },
+    {
+        "id": "a74ce89e.ed3ca8",
+        "type": "debug",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 510,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "be4b213b.ee46b",
+        "type": "debug",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 510,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5fa8defb.7d5c3",
+        "type": "inject",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 320,
+        "wires": [
+            [
+                "7234ad40.d3fbc4"
+            ]
+        ]
+    },
+    {
+        "id": "7234ad40.d3fbc4",
+        "type": "function",
+        "z": "af4a79a0.30af88",
+        "name": "Global counter",
+        "func": "var count = global.get('count') || 0;\ncount += 1;\nglobal.set('count',count);\nmsg.payload = count;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 320,
+        "wires": [
+            [
+                "11143079.ff95f"
+            ]
+        ]
+    },
+    {
+        "id": "11143079.ff95f",
+        "type": "debug",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 510,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c658cdf.7ddb53",
+        "type": "inject",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 440,
+        "wires": [
+            [
+                "e49971f3.ecee6",
+                "cbda9e46.8053b"
+            ]
+        ]
+    },
+    {
+        "id": "e49971f3.ecee6",
+        "type": "function",
+        "z": "af4a79a0.30af88",
+        "name": "Global counter",
+        "func": "var count = global.get('count') || 0;\ncount += 1;\nglobal.set('count',count);\nmsg.payload = count;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 400,
+        "wires": [
+            [
+                "78d447b1.84aa18"
+            ]
+        ]
+    },
+    {
+        "id": "6b703688.fc2d18",
+        "type": "debug",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 510,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "78d447b1.84aa18",
+        "type": "debug",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 510,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "527f3507.536a1c",
+        "type": "inject",
+        "z": "af4a79a0.30af88",
+        "name": "Clear global value",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 600,
+        "wires": [
+            [
+                "d89d998d.917148"
+            ]
+        ]
+    },
+    {
+        "id": "d89d998d.917148",
+        "type": "change",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "count",
+                "pt": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 600,
+        "wires": [
+            [
+                "acf1a542.429988"
+            ]
+        ]
+    },
+    {
+        "id": "acf1a542.429988",
+        "type": "debug",
+        "z": "af4a79a0.30af88",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 610,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "cbda9e46.8053b",
+        "type": "function",
+        "z": "af4a79a0.30af88",
+        "name": "Global counter",
+        "func": "var count = global.get('count') || 0;\ncount += 1;\nglobal.set('count',count);\nmsg.payload = count;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 480,
+        "wires": [
+            [
+                "6b703688.fc2d18"
+            ]
+        ]
+    }
+]
