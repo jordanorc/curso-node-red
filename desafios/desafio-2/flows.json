@@ -1,0 +1,663 @@
+[
+    {
+        "id": "bdb0db54.fad988",
+        "type": "tab",
+        "label": "SensorTag",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d7d7388b.f66aa8",
+        "type": "tab",
+        "label": "Simulator",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "a2cf40db.747d8",
+        "type": "subflow",
+        "name": "Subflow 2",
+        "info": "",
+        "in": [],
+        "out": []
+    },
+    {
+        "id": "dd42169e.fef438",
+        "type": "subflow",
+        "name": "Dashboard",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "ec610fad.52f42"
+                    }
+                ]
+            }
+        ],
+        "out": []
+    },
+    {
+        "id": "d2dbf53e.bfd438",
+        "type": "subflow",
+        "name": "Subflow 2 (2)",
+        "info": "",
+        "in": [],
+        "out": []
+    },
+    {
+        "id": "49ba3d5a.42b1f4",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "d111cd60.40bd1",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Default",
+        "icon": "dashboard"
+    },
+    {
+        "id": "28a7be84.6682b2",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "a40bb10e.a84d9",
+        "type": "ui_group",
+        "z": "dd42169e.fef438",
+        "name": "Lux",
+        "tab": "d111cd60.40bd1",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "f14ed597.7eaef8",
+        "type": "ui_group",
+        "z": "dd42169e.fef438",
+        "name": "Temperature",
+        "tab": "d111cd60.40bd1",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "d08e470b.c583c8",
+        "type": "ui_group",
+        "z": "dd42169e.fef438",
+        "name": "Humidity",
+        "tab": "d111cd60.40bd1",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ec610fad.52f42",
+        "type": "switch",
+        "z": "dd42169e.fef438",
+        "name": "check type",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "lux",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "temperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "humidity",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "button",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "32218ce8.48ae24"
+            ],
+            [
+                "89e96e1.daf369"
+            ],
+            [
+                "a1eed672.43e938"
+            ],
+            [
+                "8fc65eed.5372a"
+            ]
+        ]
+    },
+    {
+        "id": "adfdc473.51f928",
+        "type": "subflow:dd42169e.fef438",
+        "z": "d7d7388b.f66aa8",
+        "name": "",
+        "x": 730,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "32218ce8.48ae24",
+        "type": "ui_gauge",
+        "z": "dd42169e.fef438",
+        "name": "",
+        "group": "a40bb10e.a84d9",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "lux gauge",
+        "label": "units",
+        "format": "{{payload.value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 540,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "5b9cf789.2644f8",
+        "type": "inject",
+        "z": "d7d7388b.f66aa8",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "a48f6f9a.bfb1",
+                "80dc15b9.3f6878",
+                "9182e033.eecbb"
+            ]
+        ]
+    },
+    {
+        "id": "a48f6f9a.bfb1",
+        "type": "function",
+        "z": "d7d7388b.f66aa8",
+        "name": "lux simulator",
+        "func": "lux = Math.floor(Math.random() * (500-50) + 50);\nmsg.payload = {\"type\":\"lux\",\"value\":lux}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 60,
+        "wires": [
+            [
+                "adfdc473.51f928"
+            ]
+        ]
+    },
+    {
+        "id": "f833760e.48eff8",
+        "type": "ui_chart",
+        "z": "dd42169e.fef438",
+        "name": "",
+        "group": "f14ed597.7eaef8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "temperature chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "20",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 790,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "80dc15b9.3f6878",
+        "type": "function",
+        "z": "d7d7388b.f66aa8",
+        "name": "temperature simulator",
+        "func": "temperature = Math.floor(Math.random() * 100);\nmsg.payload = {\"type\":\"temperature\",\"value\": temperature}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 120,
+        "wires": [
+            [
+                "adfdc473.51f928"
+            ]
+        ]
+    },
+    {
+        "id": "89e96e1.daf369",
+        "type": "function",
+        "z": "dd42169e.fef438",
+        "name": "",
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 140,
+        "wires": [
+            [
+                "f833760e.48eff8"
+            ]
+        ]
+    },
+    {
+        "id": "9182e033.eecbb",
+        "type": "function",
+        "z": "d7d7388b.f66aa8",
+        "name": "humidity simulator",
+        "func": "temperature = Math.floor(Math.random() * 100);\nmsg.payload = {\"type\":\"humidity\",\"value\": temperature}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "adfdc473.51f928"
+            ]
+        ]
+    },
+    {
+        "id": "a1eed672.43e938",
+        "type": "ui_gauge",
+        "z": "dd42169e.fef438",
+        "name": "",
+        "group": "d08e470b.c583c8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humidity gauge",
+        "label": "units",
+        "format": "{{payload.value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ca3838",
+            "#00b500",
+            "#e6e600"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "x": 540,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "585968d1.1233a8",
+        "type": "ui_toast",
+        "z": "dd42169e.fef438",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 830,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8fc65eed.5372a",
+        "type": "change",
+        "z": "dd42169e.fef438",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Botão pressionado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 320,
+        "wires": [
+            [
+                "585968d1.1233a8"
+            ]
+        ]
+    },
+    {
+        "id": "cd9f3834.332c88",
+        "type": "function",
+        "z": "d7d7388b.f66aa8",
+        "name": "button simulator",
+        "func": "msg.payload = {\"type\":\"button\",\"value\": true}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "adfdc473.51f928"
+            ]
+        ]
+    },
+    {
+        "id": "7457e86c.a90768",
+        "type": "inject",
+        "z": "d7d7388b.f66aa8",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [
+                "cd9f3834.332c88"
+            ]
+        ]
+    },
+    {
+        "id": "619fd3b1.4d1e4c",
+        "type": "function",
+        "z": "bdb0db54.fad988",
+        "name": "",
+        "func": "if (msg.payload.json_data.lux) {\n    msg.payload = {\"type\": \"lux\", \"value\": msg.payload.json_data.lux}\n    return msg;\n} \nif (msg.payload.json_data.temperature) {\n    hu = {\"payload\": {\"type\": \"humidity\", \"value\": msg.payload.json_data.humidity}}\n    msg.payload = {\"type\": \"temperature\", \"value\": msg.payload.json_data.temperature}\n    return [[msg, hu]];\n} \nif (msg.payload.json_data.key2 === true) {\n    msg.payload = {\"type\": \"button\", \"value\": true}\n    return msg;\n} \nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 60,
+        "wires": [
+            [
+                "fa5933df.27acc"
+            ]
+        ]
+    },
+    {
+        "id": "fa5933df.27acc",
+        "type": "subflow:dd42169e.fef438",
+        "z": "bdb0db54.fad988",
+        "name": "",
+        "x": 460,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "c1907ab4.ec1d88",
+        "type": "debug",
+        "z": "bdb0db54.fad988",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 310,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "db99a1c0.c6515",
+        "type": "sensorTag",
+        "z": "bdb0db54.fad988",
+        "name": "sensorTag",
+        "devices": [
+            "0c61cf503b02"
+        ],
+        "temperature": true,
+        "humidity": true,
+        "pressure": true,
+        "magnetometer": true,
+        "magnetometerPeriod": 1000,
+        "accelerometer": true,
+        "accelerometerPeriod": 1000,
+        "gyroscope": true,
+        "gyroscopePeriod": 1000,
+        "luxometer": true,
+        "luxometerPeriod": 1000,
+        "keys": true,
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "619fd3b1.4d1e4c",
+                "c1907ab4.ec1d88"
+            ]
+        ]
+    }
+]

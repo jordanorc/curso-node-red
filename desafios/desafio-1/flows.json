@@ -1,0 +1,368 @@
+[
+    {
+        "id": "a7d4f1f0.6cd59",
+        "type": "subflow",
+        "name": "Dashboard",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "22bd94cf.09459c"
+                    }
+                ]
+            }
+        ],
+        "out": []
+    },
+    {
+        "id": "22bd94cf.09459c",
+        "type": "switch",
+        "z": "a7d4f1f0.6cd59",
+        "name": "check type",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "lux",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "temperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "humidity",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "button",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "ffb918fe.0c9dd8"
+            ],
+            [
+                "33ff1ae4.d87df6"
+            ],
+            [
+                "242175e7.31fc0a"
+            ],
+            [
+                "5db3158a.607fdc"
+            ]
+        ]
+    },
+    {
+        "id": "ffb918fe.0c9dd8",
+        "type": "ui_gauge",
+        "z": "a7d4f1f0.6cd59",
+        "name": "",
+        "group": "b2441b38.d6f438",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "lux gauge",
+        "label": "units",
+        "format": "{{payload.value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 540,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "3cdb9084.35093",
+        "type": "ui_chart",
+        "z": "a7d4f1f0.6cd59",
+        "name": "",
+        "group": "ec61ab8c.9dd1b8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "temperature chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "20",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 790,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "33ff1ae4.d87df6",
+        "type": "function",
+        "z": "a7d4f1f0.6cd59",
+        "name": "",
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 140,
+        "wires": [
+            [
+                "3cdb9084.35093"
+            ]
+        ]
+    },
+    {
+        "id": "242175e7.31fc0a",
+        "type": "ui_gauge",
+        "z": "a7d4f1f0.6cd59",
+        "name": "",
+        "group": "41390f06.49ffb",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humidity gauge",
+        "label": "units",
+        "format": "{{payload.value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ca3838",
+            "#00b500",
+            "#e6e600"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "x": 540,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2d93bd12.849832",
+        "type": "ui_toast",
+        "z": "a7d4f1f0.6cd59",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 830,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "5db3158a.607fdc",
+        "type": "change",
+        "z": "a7d4f1f0.6cd59",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Botão pressionado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 320,
+        "wires": [
+            [
+                "2d93bd12.849832"
+            ]
+        ]
+    },
+    {
+        "id": "b2441b38.d6f438",
+        "type": "ui_group",
+        "z": "a7d4f1f0.6cd59",
+        "name": "Lux",
+        "tab": "d111cd60.40bd1",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ec61ab8c.9dd1b8",
+        "type": "ui_group",
+        "z": "a7d4f1f0.6cd59",
+        "name": "Temperature",
+        "tab": "d111cd60.40bd1",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "41390f06.49ffb",
+        "type": "ui_group",
+        "z": "a7d4f1f0.6cd59",
+        "name": "Humidity",
+        "tab": "d111cd60.40bd1",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "d111cd60.40bd1",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Default",
+        "icon": "dashboard"
+    },
+    {
+        "id": "f95d746e.ce0c38",
+        "type": "tab",
+        "label": "ESP8266",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1d585e27.b58c82",
+        "type": "mqtt in",
+        "z": "f95d746e.ce0c38",
+        "name": "",
+        "topic": "sensor",
+        "qos": "2",
+        "broker": "8194254d.c4a978",
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [
+                "899df37d.ea603"
+            ]
+        ]
+    },
+    {
+        "id": "73bf6f0f.6b563",
+        "type": "subflow:a7d4f1f0.6cd59",
+        "z": "f95d746e.ce0c38",
+        "name": "",
+        "x": 620,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "9fd0b864.141ef8",
+        "type": "debug",
+        "z": "f95d746e.ce0c38",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 460,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "755f9171.e3f65",
+        "type": "switch",
+        "z": "f95d746e.ce0c38",
+        "name": "",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 440,
+        "y": 80,
+        "wires": [
+            [
+                "73bf6f0f.6b563"
+            ]
+        ]
+    },
+    {
+        "id": "899df37d.ea603",
+        "type": "json",
+        "z": "f95d746e.ce0c38",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "755f9171.e3f65",
+                "9fd0b864.141ef8"
+            ]
+        ]
+    },
+    {
+        "id": "8194254d.c4a978",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Local",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
