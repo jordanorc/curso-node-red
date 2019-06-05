@@ -7,8 +7,8 @@
 #define   MESH_PORT       5555
 
 // Wifi settings
-#define   STATION_SSID     "NET_502"
-#define   STATION_PASSWORD "66279334"
+#define   STATION_SSID     "WIFI_SSID"
+#define   STATION_PASSWORD "WIFI_PASSWORD"
 
 // MQTT Broker
 IPAddress mqttBroker(192, 168, 1, 186);
