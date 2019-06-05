@@ -1,0 +1,77 @@
+[
+    {
+        "id": "263c3fad.1bbfc",
+        "type": "tab",
+        "label": "InputOutput",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "dd298feb.2b21b",
+        "type": "websocket out",
+        "z": "263c3fad.1bbfc",
+        "name": "",
+        "server": "",
+        "client": "cef4a803.1fd678",
+        "x": 470,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "25259980.511d96",
+        "type": "websocket in",
+        "z": "263c3fad.1bbfc",
+        "name": "",
+        "server": "",
+        "client": "cef4a803.1fd678",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "5f4b7b4f.2ed824"
+            ]
+        ]
+    },
+    {
+        "id": "5f4b7b4f.2ed824",
+        "type": "debug",
+        "z": "263c3fad.1bbfc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 490,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "480ac465.802c1c",
+        "type": "inject",
+        "z": "263c3fad.1bbfc",
+        "name": "",
+        "topic": "",
+        "payload": "Hello World",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "dd298feb.2b21b"
+            ]
+        ]
+    },
+    {
+        "id": "cef4a803.1fd678",
+        "type": "websocket-client",
+        "z": "",
+        "path": "wss://echo.websocket.org/",
+        "tls": "",
+        "wholemsg": "false"
+    }
+]
