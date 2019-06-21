@@ -1,0 +1,382 @@
+[
+    {
+        "id": "727a5aa2.558654",
+        "type": "subflow",
+        "name": "Dashboard",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 60,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "9ba134b4.ffa688"
+                    }
+                ]
+            }
+        ],
+        "out": []
+    },
+    {
+        "id": "9ba134b4.ffa688",
+        "type": "switch",
+        "z": "727a5aa2.558654",
+        "name": "check type",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "lux",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "temperature",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "humidity",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "button",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "8f027a9c.52ca98"
+            ],
+            [
+                "b96f7361.2f397"
+            ],
+            [
+                "7fa0e682.2e05b8"
+            ],
+            [
+                "42f3c8c9.997888"
+            ]
+        ]
+    },
+    {
+        "id": "8f027a9c.52ca98",
+        "type": "ui_gauge",
+        "z": "727a5aa2.558654",
+        "name": "",
+        "group": "82ce8bfa.b894c8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "lux gauge",
+        "label": "units",
+        "format": "{{payload.value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 540,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "86195925.ee2198",
+        "type": "ui_chart",
+        "z": "727a5aa2.558654",
+        "name": "",
+        "group": "3ed2c20c.fda8ae",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "temperature chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "20",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 790,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b96f7361.2f397",
+        "type": "function",
+        "z": "727a5aa2.558654",
+        "name": "",
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 140,
+        "wires": [
+            [
+                "86195925.ee2198"
+            ]
+        ]
+    },
+    {
+        "id": "7fa0e682.2e05b8",
+        "type": "ui_gauge",
+        "z": "727a5aa2.558654",
+        "name": "",
+        "group": "98bf3e49.ad943",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humidity gauge",
+        "label": "units",
+        "format": "{{payload.value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ca3838",
+            "#00b500",
+            "#e6e600"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "x": 540,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "593d0b40.8cbe34",
+        "type": "ui_toast",
+        "z": "727a5aa2.558654",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 830,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "42f3c8c9.997888",
+        "type": "change",
+        "z": "727a5aa2.558654",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Botão pressionado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 320,
+        "wires": [
+            [
+                "593d0b40.8cbe34"
+            ]
+        ]
+    },
+    {
+        "id": "82ce8bfa.b894c8",
+        "type": "ui_group",
+        "z": "727a5aa2.558654",
+        "name": "Lux",
+        "tab": "5953c9ff.237988",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "3ed2c20c.fda8ae",
+        "type": "ui_group",
+        "z": "727a5aa2.558654",
+        "name": "Temperature",
+        "tab": "5953c9ff.237988",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "98bf3e49.ad943",
+        "type": "ui_group",
+        "z": "727a5aa2.558654",
+        "name": "Humidity",
+        "tab": "5953c9ff.237988",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "5953c9ff.237988",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Default",
+        "icon": "dashboard"
+    },
+    {
+        "id": "c5d16d9c.badec",
+        "type": "tab",
+        "label": "Simulator",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4f357caa.a82fd4",
+        "type": "subflow:727a5aa2.558654",
+        "z": "c5d16d9c.badec",
+        "name": "",
+        "x": 730,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "fbfd3dec.7b21b",
+        "type": "inject",
+        "z": "c5d16d9c.badec",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "e18fc6aa.ae2b98",
+                "cb3e4da2.ce397",
+                "ab1ce903.afd1d8"
+            ]
+        ]
+    },
+    {
+        "id": "e18fc6aa.ae2b98",
+        "type": "function",
+        "z": "c5d16d9c.badec",
+        "name": "lux simulator",
+        "func": "lux = Math.floor(Math.random() * (500-50) + 50);\nmsg.payload = {\"type\":\"lux\",\"value\":lux}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 60,
+        "wires": [
+            [
+                "4f357caa.a82fd4"
+            ]
+        ]
+    },
+    {
+        "id": "cb3e4da2.ce397",
+        "type": "function",
+        "z": "c5d16d9c.badec",
+        "name": "temperature simulator",
+        "func": "temperature = Math.floor(Math.random() * 100);\nmsg.payload = {\"type\":\"temperature\",\"value\": temperature}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 120,
+        "wires": [
+            [
+                "4f357caa.a82fd4"
+            ]
+        ]
+    },
+    {
+        "id": "ab1ce903.afd1d8",
+        "type": "function",
+        "z": "c5d16d9c.badec",
+        "name": "humidity simulator",
+        "func": "temperature = Math.floor(Math.random() * 100);\nmsg.payload = {\"type\":\"humidity\",\"value\": temperature}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "4f357caa.a82fd4"
+            ]
+        ]
+    },
+    {
+        "id": "b6f763ad.f4f7",
+        "type": "function",
+        "z": "c5d16d9c.badec",
+        "name": "button simulator",
+        "func": "msg.payload = {\"type\":\"button\",\"value\": true}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "4f357caa.a82fd4"
+            ]
+        ]
+    },
+    {
+        "id": "e6fef5f6.43e408",
+        "type": "inject",
+        "z": "c5d16d9c.badec",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "b6f763ad.f4f7"
+            ]
+        ]
+    }
+]

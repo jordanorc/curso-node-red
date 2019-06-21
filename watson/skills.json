@@ -1,0 +1,607 @@
+{
+  "name": "Marcação de consulta",
+  "intents": [
+    {
+      "intent": "marcacao_consulta",
+      "examples": [
+        {
+          "text": "falar com médico"
+        },
+        {
+          "text": "agendamento de consulta"
+        },
+        {
+          "text": "gostaria de agendar uma consulta"
+        },
+        {
+          "text": "agendar consulta"
+        },
+        {
+          "text": "poderia agendar uma consulta"
+        },
+        {
+          "text": "agendar"
+        },
+        {
+          "text": "agendamento"
+        },
+        {
+          "text": "Gostaria de marcar uma consulta"
+        },
+        {
+          "text": "gostaria de falar com meu médico"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "despedidas",
+      "examples": [
+        {
+          "text": "tchau"
+        },
+        {
+          "text": "adeus"
+        },
+        {
+          "text": "até mais"
+        },
+        {
+          "text": "até logo"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "saudacoes",
+      "examples": [
+        {
+          "text": "olá"
+        },
+        {
+          "text": "/start"
+        },
+        {
+          "text": "boa noite"
+        },
+        {
+          "text": "bom dia"
+        },
+        {
+          "text": "boa tarde"
+        },
+        {
+          "text": "olá, bom dia"
+        },
+        {
+          "text": "ei"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "cep",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "CEP",
+          "patterns": [
+            "[0-9]{5}-[\\d]{3}"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "medico",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "João",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Maria",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Pedro",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "confirmacao",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "sim",
+          "synonyms": [
+            "Sim",
+            "claro",
+            "confirmo",
+            "ok",
+            "confirmado"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "não",
+          "synonyms": [
+            "não",
+            "não confirmo",
+            "acho que não"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": []
+    },
+    {
+      "entity": "sys-time",
+      "values": []
+    }
+  ],
+  "language": "pt-br",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-09-20"
+    }
+  },
+  "description": "",
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Desculpe, vamos tentar novamente"
+          ]
+        }
+      },
+      "parent": "slot_11_1560974844261",
+      "context": {
+        "data": null,
+        "horario": null,
+        "confirmacao": null
+      },
+      "metadata": {},
+      "conditions": "@confirmacao:não",
+      "event_name": "filled",
+      "dialog_node": "handler_17_1560975110260",
+      "previous_sibling": "handler_14_1560974906701"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Perfeito"
+          ]
+        }
+      },
+      "parent": "slot_11_1560974844261",
+      "metadata": {},
+      "conditions": "@confirmacao:sim",
+      "event_name": "filled",
+      "dialog_node": "handler_14_1560974906701",
+      "previous_sibling": "handler_12_1560974844261"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_11_1560974844261",
+      "context": {
+        "confirmacao": "@confirmacao && slot_in_focus"
+      },
+      "metadata": {},
+      "conditions": "@confirmacao && slot_in_focus",
+      "event_name": "input",
+      "dialog_node": "handler_12_1560974844261",
+      "previous_sibling": "handler_13_1560974844261"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Vamos confirmar: Você gostaria de fazer o agendamento de sua consulta para <? $data.reformatDateTime(\"EEEEE\") ?>, dia <? $data.reformatDateTime(\"dd/MM/yyyy\") ?> às <? $horario.reformatDateTime(\"h a\") ?>. Está correto?"
+      },
+      "parent": "slot_11_1560974844261",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_13_1560974844261"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1560971532778",
+      "metadata": {},
+      "variable": "$cep",
+      "dialog_node": "slot_11_1560971887674",
+      "previous_sibling": "slot_11_1560974844261"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1560971532778",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$data",
+      "dialog_node": "slot_2_1560971827090",
+      "previous_sibling": "node_23_1560975617743"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1560971532778",
+      "metadata": {},
+      "variable": "$medico",
+      "dialog_node": "slot_8_1560971866640",
+      "previous_sibling": "slot_5_1560971853301"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1560971532778",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$horario",
+      "dialog_node": "slot_5_1560971853301",
+      "previous_sibling": "slot_2_1560971827090"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1560971532778",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "variable": "$confirmacao",
+      "dialog_node": "slot_11_1560974844261",
+      "previous_sibling": "slot_8_1560971866640"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Excelente! Sua consulta foi agendada. Te aguardamos em breve!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1560971532778",
+      "context": {
+        "cep": null,
+        "data": null,
+        "horario": null,
+        "confirmacao": null
+      },
+      "metadata": {},
+      "conditions": "true",
+      "dialog_node": "node_23_1560975617743",
+      "previous_sibling": "node_22_1560975590043"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Obrigado por sua visita. Deixe-me saber caso precise de alguma outra ajuda."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1560971532778",
+      "metadata": {},
+      "conditions": "$user_cancelled",
+      "dialog_node": "node_22_1560975590043"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Nós só agendamos consultas de 10:00 às 17:00."
+          ]
+        }
+      },
+      "parent": "slot_5_1560971853301",
+      "metadata": {},
+      "next_step": {
+        "behavior": "reprompt"
+      },
+      "conditions": "$horario.after('17:00:00') || $horario.before('10:00:00')",
+      "event_name": "filled",
+      "dialog_node": "handler_7_1560974650875",
+      "previous_sibling": "handler_6_1560971853301"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1560971853301",
+      "context": {
+        "horario": "@sys-time"
+      },
+      "metadata": {},
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_6_1560971853301",
+      "previous_sibling": "handler_7_1560971853301"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Para que horário você de agendar sua consulta na <? $data.reformatDateTime(\"EEEEE\") ?>, dia <? $data.reformatDateTime(\"dd/MM/yyyy\") ?>?"
+      },
+      "parent": "slot_5_1560971853301",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_7_1560971853301"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Parece que você está tentando agendar uma data passada. Favor agendar uma data futura."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_2_1560971827090",
+      "metadata": {},
+      "conditions": "$data.before(now())",
+      "event_name": "filled",
+      "dialog_node": "handler_1_1560973806223",
+      "previous_sibling": "handler_3_1560971827090"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1560971827090",
+      "context": {
+        "data": "@sys-date"
+      },
+      "metadata": {},
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_3_1560971827090",
+      "previous_sibling": "handler_4_1560971827090"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Claro, posso ajudá-lo com o agendamento de sua consulta! Para que dia você gostaria de agendar?"
+      },
+      "parent": "slot_2_1560971827090",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_4_1560971827090"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1560971866640",
+      "context": {
+        "medico": "@medico"
+      },
+      "metadata": {},
+      "conditions": "@medico",
+      "event_name": "input",
+      "dialog_node": "handler_9_1560971866640",
+      "previous_sibling": "handler_10_1560971866640"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Vamos agendar sua consulta com o médico @medico"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_8_1560971866640",
+      "metadata": {},
+      "event_name": "filled",
+      "dialog_node": "handler_9_1560974769881",
+      "previous_sibling": "handler_9_1560971866640"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Por favor, informe o médico."
+      },
+      "parent": "slot_8_1560971866640",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_10_1560971866640"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Obrigado!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_11_1560971887674",
+      "metadata": {},
+      "event_name": "filled",
+      "dialog_node": "handler_19_1560975182404",
+      "previous_sibling": "handler_12_1560971887674"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_11_1560971887674",
+      "context": {
+        "cep": "@cep"
+      },
+      "metadata": {},
+      "conditions": "@cep",
+      "event_name": "input",
+      "dialog_node": "handler_12_1560971887674",
+      "previous_sibling": "handler_13_1560971887674"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Poderia me confirmar o CEP de sua residência?"
+      },
+      "parent": "slot_11_1560971887674",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_13_1560971887674"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eu não entendi. Você pode tentar reformular a frase."
+              },
+              {
+                "text": "Você pode reformular sua afirmação? Eu não estou entendendo."
+              },
+              {
+                "text": "Eu não entendi o sentido."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_1_1560971532778"
+    },
+    {
+      "type": "standard",
+      "title": "Despedida",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Obrigado por sua visita."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#despedidas",
+      "dialog_node": "node_1_1560969037517",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "frame",
+      "title": "Marcação de consulta",
+      "output": {},
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Bem-vindo"
+      },
+      "conditions": "#marcacao_consulta",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1560971532778",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_2_1560969640772",
+      "digress_out_slots": "not_allowed"
+    },
+    {
+      "type": "standard",
+      "title": "Saudação",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá. Como posso te ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#saudacoes",
+      "dialog_node": "node_2_1560969640772",
+      "previous_sibling": "node_1_1560969037517"
+    },
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá. Como posso te ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    }
+  ],
+  "workspace_id": "bdd99ccc-6a96-4b79-b4eb-1bfa5466da22",
+  "counterexamples": [],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    }
+  },
+  "learning_opt_out": false,
+  "status": "Available"
+}

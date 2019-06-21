@@ -1,0 +1,168 @@
+[
+    {
+        "id": "4a99055a.32b50c",
+        "type": "tab",
+        "label": "Telegram Watson Assistant",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6902e71e.f371c8",
+        "type": "watson-assistant-v2",
+        "z": "4a99055a.32b50c",
+        "name": "Healthdash",
+        "default-endpoint": true,
+        "service-endpoint": "https://gateway.watsonplatform.net/assistant/api",
+        "assistant_id": "b1709d0f-34a5-4dd7-87f3-ed7a5b2b63a8",
+        "debug": false,
+        "restart": false,
+        "return_context": true,
+        "alternate_intents": false,
+        "multisession": true,
+        "timeout": "",
+        "optout-learning": false,
+        "x": 418,
+        "y": 291,
+        "wires": [
+            [
+                "e38c9f1d.4b361"
+            ]
+        ]
+    },
+    {
+        "id": "612981d1.a9e93",
+        "type": "telegram receiver",
+        "z": "4a99055a.32b50c",
+        "name": "",
+        "bot": "e0aeab59.8a6bc8",
+        "saveDataDir": "",
+        "x": 139,
+        "y": 97,
+        "wires": [
+            [
+                "a3da5158.3e8cd"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a3da5158.3e8cd",
+        "type": "function",
+        "z": "4a99055a.32b50c",
+        "name": "Assistant converter",
+        "func": "chatId = msg.payload.chatId;\nmsg.payload = msg.payload.content;\nmsg.params = {};\nmsg.additional_context = {\n    chatId: chatId\n}\nmsg.params.session_id = context.global[chatId] || null;\nmsg.params.return_context = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 279,
+        "y": 191,
+        "wires": [
+            [
+                "6902e71e.f371c8"
+            ]
+        ]
+    },
+    {
+        "id": "a31434c4.2bf5e8",
+        "type": "telegram sender",
+        "z": "4a99055a.32b50c",
+        "name": "",
+        "bot": "e0aeab59.8a6bc8",
+        "x": 1299,
+        "y": 95,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9aed6334.ab207",
+        "type": "function",
+        "z": "4a99055a.32b50c",
+        "name": "Telegram converter",
+        "func": "var msgs = [];\n// salva contexto global\nchatId = msg.payload.context.skills[\"main skill\"].user_defined.chatId;\ncontext.global[chatId] = msg.payload.session_id;\n\nfor (var m of msg.payload.output.generic) {\n    var message = {};\n    message.payload = {};\n    message.payload.type = \"message\";\n    message.payload.content = m.text;\n    message.payload.chatId = chatId;\n    msgs.push(message);\n}\nreturn [msgs];",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 95,
+        "wires": [
+            [
+                "89acd1b8.6b3c7"
+            ]
+        ]
+    },
+    {
+        "id": "e38c9f1d.4b361",
+        "type": "switch",
+        "z": "4a99055a.32b50c",
+        "name": "Check error",
+        "property": "watsonerror",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 186,
+        "wires": [
+            [
+                "9aed6334.ab207"
+            ],
+            [
+                "34580c6c.ef7214"
+            ]
+        ]
+    },
+    {
+        "id": "34580c6c.ef7214",
+        "type": "function",
+        "z": "4a99055a.32b50c",
+        "name": "Clean session",
+        "func": "var chatId = msg.additional_context.chatId;\ndelete context.global[chatId];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 293,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89acd1b8.6b3c7",
+        "type": "delay",
+        "z": "4a99055a.32b50c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1046,
+        "y": 95,
+        "wires": [
+            [
+                "a31434c4.2bf5e8"
+            ]
+        ]
+    },
+    {
+        "id": "e0aeab59.8a6bc8",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "HealthDash",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "https://api.telegram.org",
+        "pollinterval": "300"
+    }
+]
