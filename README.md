@@ -2,6 +2,8 @@
 
 Tutorial para preparação do ambiente para o minicurso de Node-RED e execução dos exemplos.
 
+[![Parte 1](assets/minicurso.png)](https://docs.google.com/presentation/d/1BA4eLnC8j8wODni86IV0af_Cnn1VoiQJ02sCYSizF7k/edit?usp=sharing)
+
 ## Instalação Local
 
 ### Instalação do Node.js
