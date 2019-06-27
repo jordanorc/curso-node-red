@@ -1,0 +1,328 @@
+[
+    {
+        "id": "e9f532f4.21b3a",
+        "type": "tab",
+        "label": "Telegram Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "eb7b68ed.9bfe78",
+        "type": "ui_form",
+        "z": "e9f532f4.21b3a",
+        "name": "",
+        "label": "Mensagem",
+        "group": "da090292.b6bf2",
+        "order": 0,
+        "width": "6",
+        "height": "6",
+        "options": [
+            {
+                "label": "Mensagem",
+                "value": "content",
+                "type": "text",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "content": ""
+        },
+        "payload": "",
+        "submit": "Enviar",
+        "cancel": "Cancelar",
+        "topic": "",
+        "x": 100,
+        "y": 299,
+        "wires": [
+            [
+                "f6e985c2.e337d8"
+            ]
+        ]
+    },
+    {
+        "id": "f5ec5b68.1d6fa8",
+        "type": "ui_audio",
+        "z": "e9f532f4.21b3a",
+        "name": "",
+        "group": "da090292.b6bf2",
+        "voice": "pt-BR",
+        "always": "",
+        "x": 804,
+        "y": 165,
+        "wires": []
+    },
+    {
+        "id": "a7741ff0.66386",
+        "type": "ui_toast",
+        "z": "e9f532f4.21b3a",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 830,
+        "y": 116,
+        "wires": []
+    },
+    {
+        "id": "cd27293f.b16258",
+        "type": "function",
+        "z": "e9f532f4.21b3a",
+        "name": "Convert to show",
+        "func": "var msg = {\"topic\": \"Mensagem do seu Telegram\", payload: msg.payload.content}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 549,
+        "y": 134,
+        "wires": [
+            [
+                "f5ec5b68.1d6fa8",
+                "a7741ff0.66386"
+            ]
+        ]
+    },
+    {
+        "id": "e92f44f.91fe6b8",
+        "type": "telegram receiver",
+        "z": "e9f532f4.21b3a",
+        "name": "",
+        "bot": "e8f2430e.7f046",
+        "saveDataDir": "",
+        "x": 126,
+        "y": 146,
+        "wires": [
+            [
+                "d84b0e64.9fd1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d84b0e64.9fd1",
+        "type": "switch",
+        "z": "e9f532f4.21b3a",
+        "name": "",
+        "property": "payload.content",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/start",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 337,
+        "y": 144,
+        "wires": [
+            [
+                "d5632a07.a013b8"
+            ],
+            [
+                "cd27293f.b16258",
+                "ce7e18ea.b0c5a8"
+            ]
+        ]
+    },
+    {
+        "id": "d5632a07.a013b8",
+        "type": "change",
+        "z": "e9f532f4.21b3a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "chatId",
+                "pt": "global",
+                "to": "payload.chatId",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "messages",
+                "pt": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 545,
+        "y": 76,
+        "wires": [
+            [
+                "1dca43ab.766bac"
+            ]
+        ]
+    },
+    {
+        "id": "2146d9de.5a6586",
+        "type": "debug",
+        "z": "e9f532f4.21b3a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1087,
+        "y": 299,
+        "wires": []
+    },
+    {
+        "id": "f6e985c2.e337d8",
+        "type": "function",
+        "z": "e9f532f4.21b3a",
+        "name": "Convert to Telegram",
+        "func": "msg = {\n    payload: {\n        \"type\": \"message\", \n        \"content\": msg.payload.content, \n        \"chatId\": global.get(\"chatId\")\n    }\n    \n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 349,
+        "y": 300,
+        "wires": [
+            [
+                "80cdfcaf.44c8b"
+            ]
+        ]
+    },
+    {
+        "id": "80cdfcaf.44c8b",
+        "type": "telegram sender",
+        "z": "e9f532f4.21b3a",
+        "name": "",
+        "bot": "e8f2430e.7f046",
+        "x": 608,
+        "y": 300,
+        "wires": [
+            [
+                "24ce467c.6f508a"
+            ]
+        ]
+    },
+    {
+        "id": "1dca43ab.766bac",
+        "type": "ui_template",
+        "z": "e9f532f4.21b3a",
+        "group": "da090292.b6bf2",
+        "name": "Mensagens",
+        "order": 0,
+        "width": "6",
+        "height": "6",
+        "format": "<h2>Histórico de Mensagens</h2>\n<style>\n    .messages .send {\n      background: #e1ffc7;\n      border-radius: 5px 0px 5px 5px;\n      margin: 5px 0;\n      padding: 5px;\n      clear: both; float: right; display: block; position: relative;\n    }\n    .messages .received {\n      background: #fff;\n      margin: 5px 0;\n      border-radius: 0px 5px 5px 5px;\n      padding: 5px;\n      clear: both; float: left; display: block; position: relative;\n    }\n    .messages {\n        list-style: none;\n    }\n</style>\n\n<ul class=\"messages\">\n<li ng-class=\"item.direction\" ng-repeat=\"item in msg.payload\">\n    {{ item.content }}\n</li>\n</ul>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1161,
+        "y": 77,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ab522a.9b0fadd",
+        "type": "function",
+        "z": "e9f532f4.21b3a",
+        "name": "Save messages",
+        "func": "messages = global.get(\"messages\") || [];\nmessages.push(msg.payload);\nglobal.set(\"messages\", messages);\nmsg.payload = messages\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 955,
+        "y": 221,
+        "wires": [
+            [
+                "1dca43ab.766bac"
+            ]
+        ]
+    },
+    {
+        "id": "ce7e18ea.b0c5a8",
+        "type": "change",
+        "z": "e9f532f4.21b3a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.direction",
+                "pt": "msg",
+                "to": "received",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 616,
+        "y": 221,
+        "wires": [
+            [
+                "1ab522a.9b0fadd"
+            ]
+        ]
+    },
+    {
+        "id": "24ce467c.6f508a",
+        "type": "change",
+        "z": "e9f532f4.21b3a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.direction",
+                "pt": "msg",
+                "to": "send",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 859,
+        "y": 300,
+        "wires": [
+            [
+                "2146d9de.5a6586",
+                "1ab522a.9b0fadd"
+            ]
+        ]
+    },
+    {
+        "id": "da090292.b6bf2",
+        "type": "ui_group",
+        "z": "",
+        "name": "Telegram",
+        "tab": "8c27ba68.5c01b8",
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "e8f2430e.7f046",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "HealthDash",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "https://api.telegram.org",
+        "pollinterval": "300"
+    },
+    {
+        "id": "8c27ba68.5c01b8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Telegram",
+        "icon": "dashboard"
+    }
+]

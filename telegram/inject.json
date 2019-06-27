@@ -1,0 +1,171 @@
+[
+    {
+        "id": "9d16b096.7ce4d",
+        "type": "tab",
+        "label": "Inject Telegram",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1ec8a7fc.57f558",
+        "type": "inject",
+        "z": "9d16b096.7ce4d",
+        "name": "",
+        "topic": "",
+        "payload": "Tudo certo!",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 106,
+        "y": 241,
+        "wires": [
+            [
+                "1cc3f4c8.2e16ab"
+            ]
+        ]
+    },
+    {
+        "id": "61ae01c5.7f008",
+        "type": "debug",
+        "z": "9d16b096.7ce4d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.content",
+        "x": 847,
+        "y": 241,
+        "wires": []
+    },
+    {
+        "id": "1cc3f4c8.2e16ab",
+        "type": "function",
+        "z": "9d16b096.7ce4d",
+        "name": "Convert to Telegram",
+        "func": "msg = {\n    payload: {\n        \"type\": \"message\", \n        \"content\": msg.payload, \n        \"chatId\": global.get(\"chatId\")\n    }\n    \n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 339,
+        "y": 241,
+        "wires": [
+            [
+                "aeba63a8.0095c"
+            ]
+        ]
+    },
+    {
+        "id": "aeba63a8.0095c",
+        "type": "telegram sender",
+        "z": "9d16b096.7ce4d",
+        "name": "",
+        "bot": "e8f2430e.7f046",
+        "x": 598,
+        "y": 241,
+        "wires": [
+            [
+                "61ae01c5.7f008"
+            ]
+        ]
+    },
+    {
+        "id": "e545daae.92e3d8",
+        "type": "telegram receiver",
+        "z": "9d16b096.7ce4d",
+        "name": "",
+        "bot": "e8f2430e.7f046",
+        "saveDataDir": "",
+        "x": 137,
+        "y": 149,
+        "wires": [
+            [
+                "9b32885.8fb5678"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9b32885.8fb5678",
+        "type": "switch",
+        "z": "9d16b096.7ce4d",
+        "name": "",
+        "property": "payload.content",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "/start",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 366,
+        "y": 144,
+        "wires": [
+            [
+                "7dae1523.3374cc"
+            ],
+            [
+                "f5ebca21.97d508"
+            ]
+        ]
+    },
+    {
+        "id": "7dae1523.3374cc",
+        "type": "change",
+        "z": "9d16b096.7ce4d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "chatId",
+                "pt": "global",
+                "to": "payload.chatId",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 583,
+        "y": 77,
+        "wires": [
+            [
+                "f5ebca21.97d508"
+            ]
+        ]
+    },
+    {
+        "id": "f5ebca21.97d508",
+        "type": "debug",
+        "z": "9d16b096.7ce4d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload.content",
+        "x": 810,
+        "y": 143,
+        "wires": []
+    },
+    {
+        "id": "e8f2430e.7f046",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "HealthDash",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "https://api.telegram.org",
+        "pollinterval": "300"
+    }
+]
