@@ -14,15 +14,15 @@ Digite https://arduino.esp8266.com/stable/package_esp8266com_index.json no campo
 
 ## Instalar as configurações para a placa ESP8266
 
-Vá até Tools -> "Board Manager", pesquise por ESP8266 e instale a versão 2.4.0 (Atenção! Você deve instalar a versão 2.4.0)
+Vá até Tools -> "Board Manager", pesquise por ESP8266 e instale a versão 2.5.2
 
 ## Configurar a placa ESP8266 
 
 No Arduino IDE, selecione a placa "NodeMCU 1.0 (ESP-12E Module)" em "Tools" -> "Board"
 
-## Instalar a biblioteca "Painless Mesh"
+## Instalar as bibliotecas necessárias
 
-No Arduino IDE, localize e instale a biblioteca pelo meno "Tools" -> "Manage Library"
+No Arduino IDE, localize e instale as bibliotecas "Painless Mesh" e "ArduinoJson" pelo menu "Tools" -> "Manage Library"
 
 ## Instalar o "Server" no nó Sink
 

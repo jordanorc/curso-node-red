@@ -10,40 +10,38 @@ painlessMesh  mesh;
 // Prototype
 void receivedCallback( uint32_t from, String &msg );
 
-void sendMessage(JsonObject& msg);
+void sendMessage(DynamicJsonDocument msg);
 
 size_t logServerId = 0;
 
-void sendMessage(JsonObject& msg) {
+void sendMessage(DynamicJsonDocument msg) {
     String str;
-    msg.printTo(str);
+    serializeJson(msg, str);
     if (logServerId == 0) // If we don't know the logServer yet
         mesh.sendBroadcast(str);
     else
         mesh.sendSingle(logServerId, str);
 
     // log to serial
-    msg.printTo(Serial);
+    serializeJson(msg, Serial);
     Serial.printf("\n");  
   
 }
 
 // Send message to the logServer every 2 seconds 
 Task myLoggingTask(2000, TASK_FOREVER, []() {
-    DynamicJsonBuffer jsonBuffer;
-    JsonObject& msg = jsonBuffer.createObject();
+    DynamicJsonDocument msg(1024);
+
     msg["type"] = "temperature";
     msg["value"] = random(0, 100);
     msg["node"] = mesh.getNodeId();
     sendMessage(msg);
 
-    jsonBuffer.createObject();
     msg["type"] = "humidity";
     msg["value"] = random(20, 100);
     msg["node"] = mesh.getNodeId();
     sendMessage(msg);
 
-    jsonBuffer.createObject();
     msg["type"] = "lux";
     msg["value"] = random(50, 500);
     msg["node"] = mesh.getNodeId();
@@ -72,8 +70,7 @@ void receivedCallback( uint32_t from, String &msg ) {
   Serial.printf("logClient: Received from %u msg=%s\n", from, msg.c_str());
 
   // Saving logServer
-  DynamicJsonBuffer jsonBuffer;
-  JsonObject& root = jsonBuffer.parseObject(msg);
+  DynamicJsonDocument root(1024);
   if (root.containsKey("topic")) {
       if (String("logServer").equals(root["topic"].as<String>())) {
           // check for on: true or false
